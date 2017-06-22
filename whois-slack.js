@@ -22,7 +22,7 @@ var config = require(dbpath)
       var json = JSON.parse(data)
       job(json)
     }
-    catch () {
+    catch (err) {
       process.exit()
     }
   })
