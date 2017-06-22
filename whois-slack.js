@@ -91,9 +91,13 @@ var attachments = (known, unknown) => [
     text: known
       .reduce((attachment, user) => (
         attachment +=
-          '<https://varnalab.slack.com/team/' +
-          user.slack + '|@' + user.slack + '>' +
-          ' _' + user.name + '_\n',
+          (
+            user.slack
+            ? '<https://varnalab.slack.com/team/' +
+              user.slack + '|@' + user.slack + '> '
+            : ''
+          ) +
+          '_' + user.name + '_\n',
         attachment
       ), ''),
     mrkdwn_in: ['text']
