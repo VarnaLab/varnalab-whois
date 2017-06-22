@@ -12,13 +12,23 @@ var dbpath = path.resolve(process.cwd(), cpath)
 var config = require(dbpath)
 
 
-var data = ''
-process.stdin.on('data', (chunk) => {
-  data += chunk
-})
-process.stdin.on('end', (chunk) => {
-  var json = JSON.parse(data)
+;(() => {
+  var data = ''
+  process.stdin.on('data', (chunk) => {
+    data += chunk
+  })
+  process.stdin.on('end', (chunk) => {
+    try {
+      var json = JSON.parse(data)
+      job(json)
+    }
+    catch () {
+      process.exit()
+    }
+  })
+})()
 
+function job (json) {
   var active = filter(config, json)
 
   if (active.unknown.length && addUnknown(config, active.unknown)) {
@@ -44,7 +54,7 @@ process.stdin.on('end', (chunk) => {
   console.log(JSON.stringify({
     attachments: attachments([], config.unknown)
   }))
-})
+}
 
 
 var filter = (config, json) => {
