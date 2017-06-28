@@ -93,3 +93,4 @@ server {
 - https://json.varnalab.org/services/whois-active.json
 - https://json.varnalab.org/services/whois-known.json
 - https://json.varnalab.org/services/whois-unknown.json
+- https://json.varnalab.org/services/whois-online.json

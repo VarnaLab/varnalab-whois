@@ -37,8 +37,11 @@ function job (json) {
 
   if (active.known.length || active.unknown.length) {
     console.log(JSON.stringify({
-      attachments: attachments(active.known, active.unknown)
+      attachments: output.slack(active.known, active.unknown)
     }))
+    console.log(JSON.stringify(
+      output.online(active.known, active.unknown)
+    ))
   }
   else {
     console.log(JSON.stringify({
@@ -47,12 +50,13 @@ function job (json) {
         mrkdwn_in: ['text']
       }]
     }))
+    console.log(JSON.stringify([]))
   }
   console.log(JSON.stringify({
-    attachments: attachments(config.known, [])
+    attachments: output.slack(config.known, [])
   }))
   console.log(JSON.stringify({
-    attachments: attachments([], config.unknown)
+    attachments: output.slack([], config.unknown)
   }))
 }
 
@@ -71,8 +75,8 @@ var filter = (config, json) => {
       // ))
 
     if (found.length) {
-      var id = config.known.indexOf(found[0])
-      known[id] = found[0]
+      var user = found[0]
+      known[user.id] = user
     }
     else {
       unknown.push(active)
@@ -86,31 +90,37 @@ var filter = (config, json) => {
 }
 
 
-var attachments = (known, unknown) => [
-  {
-    text: known
-      .reduce((attachment, user) => (
-        attachment +=
-          (
-            user.slack
-            ? '<https://varnalab.slack.com/team/' +
-              user.slack + '|@' + user.slack + '> '
-            : ''
-          ) +
-          '_' + user.name + '_\n',
-        attachment
-      ), ''),
-    mrkdwn_in: ['text']
-  },
-  {
-    text: unknown
-      .reduce((attachment, device) => (
-        attachment += '_' + device.host + '_\n',
-        attachment
-      ), ''),
-    mrkdwn_in: ['text']
-  }
-]
+var output = {
+  slack: (known, unknown) => [
+    {
+      text: known
+        .reduce((attachment, user) => (
+          attachment +=
+            (
+              user.slack
+              ? '<https://varnalab.slack.com/team/' +
+                user.slack + '|@' + user.slack + '> '
+              : ''
+            ) +
+            '_' + user.name + '_\n',
+          attachment
+        ), ''),
+      mrkdwn_in: ['text']
+    },
+    {
+      text: unknown
+        .reduce((attachment, device) => (
+          attachment += '_' + device.host + '_\n',
+          attachment
+        ), ''),
+      mrkdwn_in: ['text']
+    }
+  ],
+  online: (known, unknown) => ({
+    known: known.map((user) => user.id),
+    unknown: unknown.map((device) => device.host)
+  })
+}
 
 
 var addUnknown = (config, unknown) => {
