@@ -130,7 +130,7 @@ var output = {
   ],
   online: (known, unknown) => ({
     known: known.map((user) => user.id),
-    unknown: unknown.map((device) => device.host)
+    unknown: unknown.map((device) => ({host: device.host, mac: device.mac}))
   })
 }
 
