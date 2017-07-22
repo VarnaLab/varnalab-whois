@@ -41,7 +41,8 @@ var config = {
 function job (json) {
   var active = filter(config, json)
 
-  if (active.unknown.length && addUnknown(config, active.unknown)) {
+  if (active.unknown.length) {
+    updateUnknown(config, active.unknown)
     fs.writeFileSync(
       fpath.unknown, JSON.stringify(config.unknown, null, 2), 'utf8')
   }
@@ -134,21 +135,24 @@ var output = {
 }
 
 
-var addUnknown = (config, unknown) => {
-  var count = config.unknown.length
+var updateUnknown = (config, unknown) => {
   unknown.forEach((active) => {
-    var found = config.unknown.filter((device) => (device.mac === active.mac))
-    if (!found.length) {
+    var index = config.unknown
+      .map((device) => device.mac)
+      .indexOf(active.mac)
+
+    if (index === -1) {
       config.unknown.push({mac: active.mac, host: active.host})
+    }
+    else {
+      config.unknown[index].host = active.host
     }
   })
 
-  sortUnknown()
-
-  return (config.unknown.length > count)
+  sortUnknown(config)
 }
 
-var sortUnknown = () => {
+var sortUnknown = (config) => {
   var phones = config.unknown
     .filter((user) => user.host && /android|i?phone/i.test(user.host))
     .sort((a, b) => (
