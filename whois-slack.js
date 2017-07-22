@@ -1,15 +1,25 @@
 
-var cpath = process.argv[2]
+if (!process.argv[2]) {
+  console.error('Specify /path/to/known.json')
+  process.exit()
+}
 
-if (!cpath) {
-  console.error('Specify config file')
+if (!process.argv[3]) {
+  console.error('Specify /path/to/unknown.json')
   process.exit()
 }
 
 var fs = require('fs')
 var path = require('path')
-var dbpath = path.resolve(process.cwd(), cpath)
-var config = require(dbpath)
+
+var fpath = {
+  known: path.resolve(process.cwd(), process.argv[2]),
+  unknown: path.resolve(process.cwd(), process.argv[3])
+}
+var config = {
+  known: require(fpath.known),
+  unknown: require(fpath.unknown)
+}
 
 
 ;(() => {
@@ -32,7 +42,8 @@ function job (json) {
   var active = filter(config, json)
 
   if (active.unknown.length && addUnknown(config, active.unknown)) {
-    fs.writeFileSync(dbpath, JSON.stringify(config, null, 2), 'utf8')
+    fs.writeFileSync(
+      fpath.unknown, JSON.stringify(config.unknown, null, 2), 'utf8')
   }
 
   if (active.known.length || active.unknown.length) {

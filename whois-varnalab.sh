@@ -8,7 +8,7 @@ echo $json > ~/path/to/serve/location/active.json
 
 # slack
 echo $json \
-  | node ~/path/to/whois-slack.js ~/path/to/macdb.json \
+  | node ~/path/to/whois-slack.js ~/path/to/known.json  ~/path/to/unknown.json \
   | tee \
     >(cut -d$'\n' -f1 > ~/path/to/serve/location/whois-active.json) \
     >(cut -d$'\n' -f2 > ~/path/to/serve/location/whois-online.json) \
