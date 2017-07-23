@@ -53,7 +53,7 @@ npm install -g @varnalab/cli
 
 ```bash
 # periodic update curl -k https://json.varnalab.org/services/whois-active.json on every 5 minutes
-*/5 * * * *    (. /path/to/cronjob.env.sh; /path/to/whois-varnalab.sh; )
+*/5 * * * *    (. /path/to/cronjob.env.sh; /path/to/whois-online.sh; )
 ```
 
 
