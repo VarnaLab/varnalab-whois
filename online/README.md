@@ -1,5 +1,5 @@
 
-# slack-command-whois
+# varnalab-whois / online
 
 
 # mikrotik.json
@@ -37,7 +37,7 @@
 Set NodeJS `VERSION` and `/path/to`
 
 
-# whois-varnalab.sh
+# whois-online.sh
 
 Set all `/path/to` locations
 
