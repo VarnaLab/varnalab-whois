@@ -101,8 +101,8 @@ server {
 - https://json.varnalab.org/services/whois-online.json
 
 
-[travis-ci]: https://img.shields.io/travis/varnalab/varnalab-whois-online/master.svg?style=flat-square (Build Status - Travis CI)
-[coveralls-status]: https://img.shields.io/coveralls/varnalab/varnalab-whois-online.svg?style=flat-square (Test Coverage - Coveralls)
+[travis-ci]: https://img.shields.io/travis/VarnaLab/varnalab-whois-online/master.svg?style=flat-square (Build Status - Travis CI)
+[coveralls-status]: https://img.shields.io/coveralls/VarnaLab/varnalab-whois-online.svg?style=flat-square (Test Coverage - Coveralls)
 
-[travis]: https://travis-ci.org/varnalab/varnalab-whois-online
-[coveralls]: https://coveralls.io/github/varnalab/varnalab-whois-online
+[travis]: https://travis-ci.org/VarnaLab/varnalab-whois-online
+[coveralls]: https://coveralls.io/github/VarnaLab/varnalab-whois-online
