@@ -58,7 +58,7 @@ npm i -g @varnalab/cli
 
 ```bash
 # update on every 5 minutes
-*/5 * * * *    /path/to/whois-online.sh
+*/5 * * * *    (. /path/to/cronjob.env.sh; /path/to/whois-online.sh)
 ```
 
 
