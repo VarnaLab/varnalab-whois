@@ -1,0 +1,69 @@
+{
+  "online": {
+    "known": [
+      0,
+      1,
+      4
+    ],
+    "unknown": [
+      {
+        "host": "new-unknown-android-28ab9fba99655591",
+        "vendor": "vendor1"
+      },
+      {
+        "host": "new-unknown-pc",
+        "vendor": null
+      },
+      {
+        "host": "new-unknown-iPhone5",
+        "vendor": false
+      },
+      {
+        "host": "existing-unknown-new-host-name",
+        "vendor": "vendor0"
+      }
+    ]
+  },
+  "active": [
+    {
+      "text": "_name0_\n_name1_\n_name4_\n",
+      "mrkdwn_in": [
+        "text"
+      ]
+    },
+    {
+      "text": "_new-unknown-android-28ab9fba99655591_\n_new-unknown-pc_\n_new-unknown-iPhone5_\n_existing-unknown-new-host-name_\n",
+      "mrkdwn_in": [
+        "text"
+      ]
+    }
+  ],
+  "known": [
+    {
+      "text": "_name0_\n_name1_\n_name2_\n_name3_\n_name4_\n",
+      "mrkdwn_in": [
+        "text"
+      ]
+    },
+    {
+      "text": "",
+      "mrkdwn_in": [
+        "text"
+      ]
+    }
+  ],
+  "unknown": [
+    {
+      "text": "",
+      "mrkdwn_in": [
+        "text"
+      ]
+    },
+    {
+      "text": "_new-unknown-android-28ab9fba99655591_\n_new-unknown-iPhone5_\n_existing-unknown-new-host-name_\n_new-unknown-pc_\n",
+      "mrkdwn_in": [
+        "text"
+      ]
+    }
+  ]
+}
