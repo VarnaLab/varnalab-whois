@@ -1,5 +1,5 @@
 
-# varnalab-whois-online
+# varnalab-whois
 
 [![travis-ci]][travis] [![coveralls-status]][coveralls]
 
@@ -12,11 +12,11 @@ nvm install node 8
 ```
 
 
-# varnalab-whois-online
+# varnalab-whois
 
 ```bash
-git clone git@github.com:VarnaLab/varnalab-whois-online.git
-cd varnalab-whois-online
+git clone git@github.com:VarnaLab/varnalab-whois.git
+cd varnalab-whois
 npm i --production
 ```
 
@@ -77,13 +77,13 @@ node4=/home/$user/.nvm/versions/node/$nodev4/bin/node
 node8=/home/$user/.nvm/versions/node/$nodev8/bin/node
 
 # locations
-config=/home/$user/simo/config/varnalab-whois-online
+config=/home/$user/simo/config/varnalab-whois
 projects=/home/$user/simo/projects
 serve=/home/$user/services/public
 
 # projects
 cli=$projects/varnalab-cli/bin/whois.js
-whois=$projects/varnalab-whois-online/bin/
+whois=$projects/varnalab-whois/bin/
 
 
 #########################################################
@@ -115,7 +115,7 @@ echo $json \
 
 ```bash
 # update on every 5 minutes
-*/5 * * * *    /home/varnalab/simo/config/varnalab-whois-online/whois-online.sh
+*/5 * * * *    /home/varnalab/simo/config/varnalab-whois/whois-online.sh
 ```
 
 
