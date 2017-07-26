@@ -23,7 +23,13 @@
     "varnalab-whois-online": "./bin/"
   },
   "main": "./",
-  "files": [],
+  "files": [
+    "bin/",
+    "lib/",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
   "scripts": {
     "test": "npm run test-ci",
     "test-ci": "mocha test/",
