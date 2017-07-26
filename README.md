@@ -3,9 +3,29 @@
 
 [![travis-ci]][travis] [![coveralls-status]][coveralls]
 
+
+# nvm
+
+```bash
+nvm install node 4
+nvm install node 8
+```
+
+
+# varnalab-whois-online
+
 ```bash
 git clone git@github.com:VarnaLab/varnalab-whois-online.git
 cd varnalab-whois-online
+npm i --production
+```
+
+
+# varnalab-cli
+
+```bash
+git clone git@github.com:VarnaLab/varnalab-cli.git
+cd varnalab-cli
 npm i --production
 ```
 
@@ -44,13 +64,50 @@ npm i --production
 
 # whois-online.sh
 
-Set all `/path/to` locations
+```bash
+#!/bin/bash
+
+# globals
+user=varnalab
+nodev4=v4.6.1
+nodev8=v8.2.1
+
+# node
+node4=/home/$user/.nvm/versions/node/$nodev4/bin/node
+node8=/home/$user/.nvm/versions/node/$nodev8/bin/node
+
+# locations
+config=/home/$user/simo/config/varnalab-whois-online
+projects=/home/$user/simo/projects
+serve=/home/$user/services/public
+
+# projects
+cli=$projects/varnalab-cli/bin/whois.js
+whois=$projects/varnalab-whois-online/bin/
+
+
+#########################################################
 
 
 # @varnalab/cli
+json=$($node4 $cli --config $config/mikrotik.json --env production --output json)
 
-```bash
-npm i -g @varnalab/cli
+# varnalab.org - active.json
+echo $json > $serve/active.json
+
+
+# varnalab.github.io - whois-online.json
+# varnalab.slack.com - whois-[active/known/unknown].json
+echo $json \
+  | $node8 $whois \
+    --known $config/known.json \
+    --unknown $config/unknown.json \
+  | tee \
+    >(i=`cut -d$'\n' -f1` && c=`cat $serve/whois-online.json` && if [[ ! -z "${i}" ]]; then echo $i; else echo $c; fi > $serve/whois-online.json) \
+    >(i=`cut -d$'\n' -f2` && c=`cat $serve/whois-active.json` && if [[ ! -z "${i}" ]]; then echo $i; else echo $c; fi > $serve/whois-active.json) \
+    >(i=`cut -d$'\n' -f3` && c=`cat $serve/whois-known.json` && if [[ ! -z "${i}" ]]; then echo $i; else echo $c; fi > $serve/whois-known.json) \
+    >(i=`cut -d$'\n' -f4` && c=`cat $serve/whois-unknown.json` && if [[ ! -z "${i}" ]]; then echo $i; else echo $c; fi > $serve/whois-unknown.json) \
+    2>&1 >/dev/null
 ```
 
 
@@ -58,7 +115,7 @@ npm i -g @varnalab/cli
 
 ```bash
 # update on every 5 minutes
-*/5 * * * *    (. /path/to/cronjob.env.sh; /path/to/whois-online.sh)
+*/5 * * * *    /home/varnalab/simo/config/varnalab-whois-online/whois-online.sh
 ```
 
 
@@ -94,11 +151,14 @@ server {
 
 # URLs
 
+- used in *varnalab.org*
 - https://json.varnalab.org/services/active.json
+- used in *varnalab.github.io*
+- https://json.varnalab.org/services/whois-online.json
+- used in *varnalab.slack.com*
 - https://json.varnalab.org/services/whois-active.json
 - https://json.varnalab.org/services/whois-known.json
 - https://json.varnalab.org/services/whois-unknown.json
-- https://json.varnalab.org/services/whois-online.json
 
 
 [travis-ci]: https://img.shields.io/travis/VarnaLab/varnalab-whois-online/master.svg?style=flat-square (Build Status - Travis CI)
