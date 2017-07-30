@@ -51,9 +51,9 @@ var output = require('../lib/output')(device.sort)
 })()
 
 
-function run (active) {
+function run ({active}) {
 
-  device.update(devices, active, resolve, (updated) => {
+  device.update(devices, active, (updated) => {
     fs.writeFileSync(
       fpath.devices, JSON.stringify(updated, null, 2),
       'utf8'
