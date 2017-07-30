@@ -1,0 +1,26 @@
+[
+  {
+    "id": "hey",
+    "mac": "mac0",
+    "host": "existing-unknown-new-host-name",
+    "vendor": "vendor0"
+  },
+  {
+    "id": "hey",
+    "mac": "mac1",
+    "host": "new-unknown-pc",
+    "vendor": false
+  },
+  {
+    "id": "hey",
+    "mac": "mac2",
+    "host": "new-unknown-android-28ab9fba99655591",
+    "vendor": false
+  },
+  {
+    "id": "hey",
+    "mac": "mac3",
+    "host": "new-unknown-iPhone5",
+    "vendor": false
+  }
+]

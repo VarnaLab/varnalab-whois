@@ -50,13 +50,13 @@ npm i --production
 ```
 
 
-# known.json
+# users.json
 
 ```json
 []
 ```
 
-# unknown.json
+# devices.json
 
 ```json
 []
@@ -97,16 +97,14 @@ echo $json > $serve/active.json
 
 
 # varnalab.github.io - whois-online.json
-# varnalab.slack.com - whois-[active/known/unknown].json
+# varnalab.slack.com - whois-active.json
 echo $json \
   | $node8 $whois \
-    --known $config/known.json \
-    --unknown $config/unknown.json \
+    --users $config/users.json \
+    --devices $config/devices.json \
   | tee \
     >(i=`cut -d$'\n' -f1` && c=`cat $serve/whois-online.json` && if [[ ! -z "${i}" ]]; then echo $i; else echo $c; fi > $serve/whois-online.json) \
     >(i=`cut -d$'\n' -f2` && c=`cat $serve/whois-active.json` && if [[ ! -z "${i}" ]]; then echo $i; else echo $c; fi > $serve/whois-active.json) \
-    >(i=`cut -d$'\n' -f3` && c=`cat $serve/whois-known.json` && if [[ ! -z "${i}" ]]; then echo $i; else echo $c; fi > $serve/whois-known.json) \
-    >(i=`cut -d$'\n' -f4` && c=`cat $serve/whois-unknown.json` && if [[ ! -z "${i}" ]]; then echo $i; else echo $c; fi > $serve/whois-unknown.json) \
     2>&1 >/dev/null
 ```
 
@@ -157,8 +155,6 @@ server {
 - https://json.varnalab.org/services/whois-online.json
 - used in *varnalab.slack.com*
 - https://json.varnalab.org/services/whois-active.json
-- https://json.varnalab.org/services/whois-known.json
-- https://json.varnalab.org/services/whois-unknown.json
 
 
 [travis-ci]: https://img.shields.io/travis/VarnaLab/varnalab-whois/master.svg?style=flat-square (Build Status - Travis CI)

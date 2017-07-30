@@ -1,0 +1,26 @@
+[
+  {
+    "id": "device0",
+    "mac": "mac0",
+    "host": "host0",
+    "vendor": "vendor0"
+  },
+  {
+    "id": "device1",
+    "mac": "mac1",
+    "host": "host1",
+    "vendor": "vendor1"
+  },
+  {
+    "id": "device2",
+    "mac": "mac2",
+    "host": "host2",
+    "vendor": "vendor2"
+  },
+  {
+    "id": "device3",
+    "mac": "mac3",
+    "host": "host3",
+    "vendor": "vendor3"
+  }
+]

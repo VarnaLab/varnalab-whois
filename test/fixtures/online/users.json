@@ -1,0 +1,17 @@
+[
+  {
+    "id": "user0",
+    "name": "name0",
+    "devices": [
+      "device0"
+    ]
+  },
+  {
+    "id": "user1",
+    "name": "name2",
+    "devices": [
+      "device2",
+      "device3"
+    ]
+  }
+]

@@ -4,7 +4,6 @@ require.cache[require.resolve('uuid')].exports = () => 'hey'
 
 var t = require('assert')
 var http = require('http')
-var online = require('../lib/online')()
 var resolve = require('../lib/mac-resolve')({
   method: 'GET',
   protocol: 'http:',
@@ -13,15 +12,15 @@ var resolve = require('../lib/mac-resolve')({
   timeout: 100,
 })
 var device = require('../lib/device')(resolve)
-var output = require('../lib/output')(device.sort)
 
 var fixtures = {
-  active: require('./fixtures/output/active'),
-  whois: require('./fixtures/output/whois'),
+  devices: require('./fixtures/device/devices'),
+  mikrotik: require('./fixtures/device/mikrotik').active,
+  updated: require('./fixtures/device/updated'),
 }
 
 
-describe('output', () => {
+describe('device', () => {
   var server
 
   before((done) => {
@@ -34,9 +33,14 @@ describe('output', () => {
     server.listen(3000, done)
   })
 
-  it('whois', () => {
-    var whois = output.whois(fixtures.active)
-    t.deepEqual(whois, fixtures.whois)
+  it('update', (done) => {
+    device.update(
+      fixtures.devices,
+      fixtures.mikrotik,
+      (updated) => {
+        t.deepEqual(updated, fixtures.updated)
+        done()
+      })
   })
 
   after((done) => {

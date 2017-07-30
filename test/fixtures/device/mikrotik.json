@@ -1,0 +1,25 @@
+{
+  "timestamp": 1482396988,
+  "active": [
+    {
+      "mac": "mac0",
+      "ip": "ip0",
+      "host": "existing-unknown-new-host-name"
+    },
+    {
+      "mac": "mac1",
+      "ip": "ip1",
+      "host": "new-unknown-pc"
+    },
+    {
+      "mac": "mac2",
+      "ip": "ip2",
+      "host": "new-unknown-android-28ab9fba99655591"
+    },
+    {
+      "mac": "mac3",
+      "ip": "ip3",
+      "host": "new-unknown-iPhone5"
+    }
+  ]
+}

@@ -3,18 +3,18 @@
 var argv = require('minimist')(process.argv.slice(2))
 
 if (argv.help) {
-  console.log('--known /path/to/known.json')
-  console.log('--unknown /path/to/unknown.json')
+  console.log('--users /path/to/users.json')
+  console.log('--devices /path/to/devices.json')
   process.exit()
 }
 
-if (!argv.known) {
-  console.error('Specify /path/to/known.json')
+if (!argv.users) {
+  console.error('Specify /path/to/users.json')
   process.exit()
 }
 
-if (!argv.unknown) {
-  console.error('Specify /path/to/unknown.json')
+if (!argv.devices) {
+  console.error('Specify /path/to/devices.json')
   process.exit()
 }
 
@@ -22,17 +22,16 @@ var fs = require('fs')
 var path = require('path')
 
 var fpath = {
-  known: path.resolve(process.cwd(), argv.known),
-  unknown: path.resolve(process.cwd(), argv.unknown)
+  users: path.resolve(process.cwd(), argv.users),
+  devices: path.resolve(process.cwd(), argv.devices)
 }
-var config = {
-  known: require(fpath.known),
-  unknown: require(fpath.unknown)
-}
+var users = require(fpath.users)
+var devices = require(fpath.devices)
+
 var online = require('../lib/online')()
-var unknown = require('../lib/unknown')()
-var output = require('../lib/output')()
 var resolve = require('../lib/mac-resolve')()
+var device = require('../lib/device')(resolve)
+var output = require('../lib/output')(device.sort)
 
 
 ;(() => {
@@ -43,7 +42,7 @@ var resolve = require('../lib/mac-resolve')()
   process.stdin.on('end', (chunk) => {
     try {
       var json = JSON.parse(data)
-      execute(json)
+      run(json)
     }
     catch (err) {
       process.exit()
@@ -52,25 +51,21 @@ var resolve = require('../lib/mac-resolve')()
 })()
 
 
-function execute (json) {
+function run (active) {
 
-  var active = online.filter(config, json)
-
-  unknown.update(config, active, resolve, () => {
-
+  device.update(devices, active, resolve, (updated) => {
     fs.writeFileSync(
-      fpath.unknown, JSON.stringify(config.unknown, null, 2),
+      fpath.devices, JSON.stringify(updated, null, 2),
       'utf8'
     )
 
-    unknown.active(config, active)
-    var whois = output.whois(config, active)
+    var whois = output.whois(online
+      .filter(users, updated, active)
+    )
 
     // used in varnalab.github.io
     console.log(JSON.stringify(whois.online))
     // used in varnalab.slack.com
     console.log(JSON.stringify({attachments: whois.active}))
-    console.log(JSON.stringify({attachments: whois.known}))
-    console.log(JSON.stringify({attachments: whois.unknown}))
   })
 }

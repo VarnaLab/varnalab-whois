@@ -1,0 +1,25 @@
+{
+  "timestamp": 1482396988,
+  "active": [
+    {
+      "mac": "mac0",
+      "ip": "ip0",
+      "host": "host0"
+    },
+    {
+      "mac": "mac1",
+      "ip": "ip1",
+      "host": "host1"
+    },
+    {
+      "mac": "mac2",
+      "ip": "ip2",
+      "host": "host2"
+    },
+    {
+      "mac": "mac3",
+      "ip": "ip3",
+      "host": "host3"
+    }
+  ]
+}
