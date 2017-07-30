@@ -1,5 +1,6 @@
 [
   {
+    "id": "hey",
     "mac": "11:59:F9:E4:22:55",
     "host": "existing-unknown-pc",
     "vendor": "vendor0"

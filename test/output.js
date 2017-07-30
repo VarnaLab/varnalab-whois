@@ -1,4 +1,7 @@
 
+require('uuid')
+require.cache[require.resolve('uuid')].exports = () => 'hey'
+
 var t = require('assert')
 var http = require('http')
 var online = require('../lib/online')()
