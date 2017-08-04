@@ -20,6 +20,11 @@
       "mac": "mac3",
       "ip": "ip3",
       "host": "host3"
+    },
+    {
+      "mac": "mac1",
+      "ip": "ip4",
+      "host": "host1"
     }
   ]
 }
