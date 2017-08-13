@@ -1,15 +1,15 @@
 {
-  "name": "varnalab-whois-online",
+  "name": "varnalab-whois",
   "version": "1.0.0",
   "private": true,
-  "description": "VarnaLab Whois Online Service",
+  "description": "Whois in VarnaLab Service",
   "keywords": [],
   "license": "MIT",
   "homepage": "https://api.varnalab.org",
   "author": "Simeon Velichkov <simeonvelichkov@gmail.com> (https://simov.github.io)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/varnalab/varnalab-whois-online.git"
+    "url": "https://github.com/varnalab/varnalab-whois.git"
   },
   "dependencies": {
     "minimist": "^1.2.0",
@@ -21,7 +21,7 @@
     "mocha": "^3.4.2"
   },
   "bin": {
-    "varnalab-whois-online": "./bin/"
+    "varnalab-whois": "./bin/"
   },
   "main": "./",
   "files": [
