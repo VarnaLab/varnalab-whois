@@ -1,0 +1,18 @@
+{
+  "attachments": [
+    {
+      "fallback": "VarnaLab Command",
+      "text": "_name0_\n_name2_\n",
+      "mrkdwn_in": [
+        "text"
+      ]
+    },
+    {
+      "fallback": "VarnaLab Command",
+      "text": "_host1_ - _vendor1_\n",
+      "mrkdwn_in": [
+        "text"
+      ]
+    }
+  ]
+}

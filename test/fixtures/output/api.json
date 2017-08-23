@@ -1,0 +1,13 @@
+{
+  "known": [
+    "user0",
+    "user1"
+  ],
+  "unknown": [
+    {
+      "id": "device1",
+      "host": "host1",
+      "vendor": "vendor1"
+    }
+  ]
+}

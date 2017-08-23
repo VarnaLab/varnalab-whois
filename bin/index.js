@@ -5,6 +5,7 @@ var argv = require('minimist')(process.argv.slice(2))
 if (argv.help) {
   console.log('--users /path/to/users.json')
   console.log('--devices /path/to/devices.json')
+  console.log('--output api|slack')
   process.exit()
 }
 
@@ -59,13 +60,10 @@ function run ({active}) {
       'utf8'
     )
 
-    var whois = output.whois(online
-      .filter(users, updated, active)
-    )
-
-    // used in varnalab.github.io
-    console.log(JSON.stringify(whois.online))
-    // used in varnalab.slack.com
-    console.log(JSON.stringify({attachments: whois.active}))
+    console.log(JSON.stringify(
+      output[argv.output || 'api'](
+        online.filter(users, updated, active)
+      )
+    ))
   })
 }

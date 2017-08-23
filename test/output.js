@@ -17,7 +17,8 @@ var output = require('../lib/output')(device.sort)
 
 var fixtures = {
   active: require('./fixtures/output/active'),
-  whois: require('./fixtures/output/whois'),
+  api: require('./fixtures/output/api'),
+  slack: require('./fixtures/output/slack'),
 }
 
 
@@ -34,9 +35,12 @@ describe('output', () => {
     server.listen(3000, done)
   })
 
-  it('whois', () => {
-    var whois = output.whois(fixtures.active)
-    t.deepEqual(whois, fixtures.whois)
+  it('api', () => {
+    t.deepEqual(output.api(fixtures.active), fixtures.api)
+  })
+
+  it('slack', () => {
+    t.deepEqual(output.slack(fixtures.active), fixtures.slack)
   })
 
   after((done) => {
