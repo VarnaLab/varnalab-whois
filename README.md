@@ -96,16 +96,14 @@ json=$($node4 $cli --config $config/mikrotik.json --env production --output json
 echo $json > $serve/active.json
 
 
-# varnalab.github.io - whois-online.json
-# varnalab.slack.com - whois-active.json
-echo $json \
-  | $node8 $whois \
+# --output api   - api.varnalab.org
+# --output slack - varnalab.slack.com
+echo $online |
+  $node8 $whois \
     --users $config/users.json \
     --devices $config/devices.json \
-  | tee \
-    >(i=`cut -d$'\n' -f1` && c=`cat $serve/whois-online.json` && if [[ ! -z "${i}" ]]; then echo $i; else echo $c; fi > $serve/whois-online.json) \
-    >(i=`cut -d$'\n' -f2` && c=`cat $serve/whois-active.json` && if [[ ! -z "${i}" ]]; then echo $i; else echo $c; fi > $serve/whois-active.json) \
-    2>&1 >/dev/null
+    --output slack \
+    > $serve/online.json
 ```
 
 
