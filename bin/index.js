@@ -46,6 +46,7 @@ var output = require('../lib/output')(device.sort)
       run(json)
     }
     catch (err) {
+      console.log(JSON.stringify({known: [], unknown: []}))
       process.exit()
     }
   })
