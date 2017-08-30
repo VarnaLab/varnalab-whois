@@ -20,6 +20,11 @@
       "mac": "mac3",
       "ip": "ip3",
       "host": "new-unknown-iPhone5"
+    },
+    {
+      "mac": "mac1",
+      "ip": "ip1",
+      "host": "new-unknown-pc"
     }
   ]
 }
