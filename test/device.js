@@ -36,11 +36,13 @@ describe('device', () => {
   it('update', (done) => {
     device.update(
       fixtures.devices,
-      fixtures.mikrotik,
-      (updated) => {
-        t.deepEqual(updated, fixtures.updated)
-        done()
-      })
+      fixtures.mikrotik
+    )
+    .then((updated) => {
+      t.deepEqual(updated, fixtures.updated)
+      done()
+    })
+    .catch(done)
   })
 
   after((done) => {

@@ -46,7 +46,7 @@ var output = require('../lib/output')(device.sort)
       run(json)
     }
     catch (err) {
-      console.log(JSON.stringify({known: [], unknown: []}))
+      console.log(JSON.stringify({error: err.message}))
       process.exit()
     }
   })
@@ -55,7 +55,7 @@ var output = require('../lib/output')(device.sort)
 
 function run ({active}) {
 
-  device.update(devices, active, (updated) => {
+  device.update(devices, active).then((updated) => {
     fs.writeFileSync(
       fpath.devices, JSON.stringify(updated, null, 2),
       'utf8'
@@ -66,5 +66,9 @@ function run ({active}) {
         online.filter(users, updated, active)
       )
     ))
+  })
+  .catch((err) => {
+    console.log(JSON.stringify({error: err.message}))
+    console.error(err)
   })
 }
