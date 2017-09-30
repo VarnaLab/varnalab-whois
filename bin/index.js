@@ -10,12 +10,12 @@ if (argv.help) {
 }
 
 if (!argv.users) {
-  console.error('Specify /path/to/users.json')
+  console.log('Specify /path/to/users.json')
   process.exit()
 }
 
 if (!argv.devices) {
-  console.error('Specify /path/to/devices.json')
+  console.log('Specify /path/to/devices.json')
   process.exit()
 }
 
@@ -34,6 +34,8 @@ var resolve = require('../lib/mac-resolve')()
 var device = require('../lib/device')(resolve)
 var output = require('../lib/output')(device.sort)
 
+var out = argv.output || 'api'
+
 
 ;(() => {
   var data = ''
@@ -46,7 +48,7 @@ var output = require('../lib/output')(device.sort)
       run(json)
     }
     catch (err) {
-      console.log(JSON.stringify({error: err.message}))
+      console.log(JSON.stringify(output.error[out]))
       process.exit()
     }
   })
@@ -60,15 +62,12 @@ function run ({active}) {
       fpath.devices, JSON.stringify(updated, null, 2),
       'utf8'
     )
-
     console.log(JSON.stringify(
-      output[argv.output || 'api'](
-        online.filter(users, updated, active)
-      )
+      output[out](online.filter(users, updated, active))
     ))
   })
   .catch((err) => {
-    console.log(JSON.stringify({error: err.message}))
+    console.log(JSON.stringify(output.error[out]))
     console.error(err)
   })
 }
