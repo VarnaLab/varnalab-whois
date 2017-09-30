@@ -21,9 +21,9 @@
     "mocha": "^3.4.2"
   },
   "bin": {
-    "varnalab-whois": "./bin/"
+    "varnalab-whois": "./bin/index.js"
   },
-  "main": "./",
+  "main": "",
   "files": [
     "bin/",
     "lib/",
@@ -37,7 +37,7 @@
     "test-cov": "istanbul cover _mocha"
   },
   "engines": {
-    "node": "^8.0.0",
-    "npm": "^5.0.0"
+    "node": ">=8.0.0",
+    "npm": ">=5.0.0"
   }
 }
