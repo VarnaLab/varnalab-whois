@@ -70,6 +70,7 @@ async function run ({devices, users, active}) {
   }
 
   var active = online.format({users, devices, active})
+  active.unknown = online.blacklist({devices: active.unknown, blacklist})
   fs.writeFileSync(fpath.online, JSON.stringify(online.filter(active)), 'utf8')
 
 }
