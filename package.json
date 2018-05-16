@@ -13,15 +13,17 @@
   },
   "dependencies": {
     "minimist": "^1.2.0",
-    "uuid": "^3.1.0"
+    "request-compose": "0.0.16",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "coveralls": "^2.13.1",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.4.2"
+    "coveralls": "^3.0.1",
+    "istanbul": "1.1.0-alpha.1",
+    "mocha": "^5.1.1",
+    "request-logs": "0.0.5"
   },
   "bin": {
-    "varnalab-whois": "./bin/index.js"
+    "varnalab-whois": "./bin/cli.js"
   },
   "main": "",
   "files": [
@@ -32,12 +34,11 @@
     "package.json"
   ],
   "scripts": {
-    "test": "npm run test-ci",
-    "test-ci": "mocha test/",
-    "test-cov": "istanbul cover _mocha"
+    "test": "npm run test:ci",
+    "test:ci": "mocha --timeout 5000 test/",
+    "test:cov": "istanbul cover _mocha -- --timeout 5000"
   },
   "engines": {
-    "node": ">=8.0.0",
-    "npm": ">=5.0.0"
+    "node": ">=8.0.0"
   }
 }

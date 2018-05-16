@@ -1,12 +1,6 @@
 [
   {
     "id": "hey",
-    "mac": "mac0",
-    "host": "existing-unknown-new-host-name",
-    "vendor": "vendor0"
-  },
-  {
-    "id": "hey",
     "mac": "mac1",
     "host": "new-unknown-pc"
   },
